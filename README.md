@@ -11,4 +11,4 @@ Dockerized VPN server using IKEv2 protocol
         --env HOST="<Host IP>" \
         --env USERNAME="<Username>" \
         --env PASSWORD="<Password>" \
-        jonghwanhyeon/ikev2
+        jonghwanhyeon/vpn-ikev2
