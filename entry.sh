@@ -6,7 +6,7 @@ if [ ! -d /pki ]; then
   # Creating a certificate authority
   ipsec pki --gen --type rsa --size 4096 --outform pem > /pki/ca-key.pem
   ipsec pki --self --ca --lifetime 3650 --in /pki/ca-key.pem \
-    --type rsa --dn "CN=$NAME Root CA" --outform pem > /pki/ca-cert.pem
+    --type rsa --dn "CN=$NAME VPN Root CA" --outform pem > /pki/ca-cert.pem
 
   # Generating a certificate for the VPN server
   ipsec pki --gen --type rsa --size 4096 --outform pem > /pki/server-key.pem
