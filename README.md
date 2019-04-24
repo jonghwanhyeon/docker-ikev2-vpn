@@ -12,3 +12,5 @@ Dockerized VPN server using IKEv2 protocol
         --env USERNAME="<Username>" \
         --env PASSWORD="<Password>" \
         jonghwanhyeon/vpn-ikev2
+
+To view and download the certificate, use `docker logs`
