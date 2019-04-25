@@ -16,7 +16,8 @@ def add_user(arguments):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(dest='command', required=True)
+    subparsers = parser.add_subparsers(dest='command')
+    subparsers.required = True
 
     parser_certificate = subparsers.add_parser('certificate')
     parser_certificate.set_defaults(func=show_certificate)
