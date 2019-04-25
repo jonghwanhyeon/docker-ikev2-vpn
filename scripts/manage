@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+
+import argparse
+import subprocess
+
+def show_certificate(arguments):
+    with open('/pki/ca-cert.pem', 'r') as input_file:
+        print(input_file.read().strip())
+
+
+def add_user(arguments):
+    with open('/etc/ipsec.secrets', 'a') as output_file:
+        print('{username} : EAP "{password}"'.format(**vars(arguments)), file=output_file)
+    subprocess.run(['ipsec', 'rereadall'])
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(dest='command', required=True)
+
+    parser_certificate = subparsers.add_parser('certificate')
+    parser_certificate.set_defaults(func=show_certificate)
+
+    parser_adduser = subparsers.add_parser('adduser')
+    parser_adduser.add_argument('username')
+    parser_adduser.add_argument('password')
+    parser_adduser.set_defaults(func=add_user)
+
+    arguments = parser.parse_args()
+    arguments.func(arguments)

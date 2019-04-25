@@ -3,6 +3,7 @@ FROM debian:stretch-slim
 LABEL maintainer="hyeon0145@gmail.com"
 
 RUN apt-get update && apt-get install -y \
+    python3-minimal \
     strongswan \
     strongswan-pki \
     libcharon-extra-plugins \
@@ -13,9 +14,12 @@ RUN apt-get update && apt-get install -y \
 EXPOSE 500:500/udp
 EXPOSE 4500:4500/udp
 
-COPY ipsec.conf.template /ipsec.conf.template
-COPY ipsec.secrets.template /ipsec.secrets.template
+COPY conf/ipsec.conf.template /etc/ipsec.conf
+COPY conf/ipsec.secrets /etc/ipsec.secrets
 
-COPY entry.sh /entry.sh
+COPY scripts/manage /usr/local/bin/manage
+RUN chmod u+x /usr/local/bin/manage
+
+COPY scripts/entry.sh /entry.sh
 RUN chmod u+x /entry.sh
 CMD /entry.sh

@@ -9,8 +9,11 @@ Dockerized VPN server using IKEv2 protocol
         --publish=4500:4500/udp \
         --env NAME="<VPN Server Name>" \
         --env HOST="<Host IP>" \
-        --env USERNAME="<Username>" \
-        --env PASSWORD="<Password>" \
+        --name=vpn-ikev2 \
         jonghwanhyeon/vpn-ikev2
 
-To view and download the certificate, use `docker logs`
+To view and download the certificate:
+    $ docker exec vpn-ikev2 manage certificate
+
+To add a user:
+    $ docker exec vpn-ikev2 manage adduser <username> <password>
