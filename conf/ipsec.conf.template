@@ -1,24 +1,29 @@
 config setup
-    charondebug="ike 1, knl 1, cfg 0"
-    uniqueids=no
+    uniqueids=never
 
 conn ikev2-vpn
-    auto=add
-    compress=no
     type=tunnel
     keyexchange=ikev2
     ike=aes256-sha1-modp1024,aes128-sha1-modp1024,3des-sha1-modp1024!
     esp=aes256-sha256,aes256-sha1,3des-sha1!
-    fragmentation=yes
+
+    auto=add
+    compress=no
     forceencaps=yes
+    fragmentation=yes
+
+    # dead peer detection
     dpdaction=clear
     dpddelay=300s
-    rekey=no
+
+    # server-side
     left=%any
     leftid={host}
     leftcert=server-cert.pem
     leftsendcert=always
     leftsubnet=0.0.0.0/0
+
+    # client-side
     right=%any
     rightid=%any
     rightauth=eap-mschapv2
