@@ -6,6 +6,7 @@ Dockerized IKEv2 VPN server
     $ docker run \
         --detach \
         --privileged \
+        --volume=/lib/modules:/lib/modules \
         --publish=500:500/udp \
         --publish=4500:4500/udp \
         --env NAME="<VPN Server Name>" \
