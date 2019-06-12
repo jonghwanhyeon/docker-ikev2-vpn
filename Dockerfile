@@ -16,6 +16,7 @@ EXPOSE 4500:4500/udp
 
 COPY conf/ipsec.conf.template /etc/ipsec.conf
 COPY conf/charon-logging.conf /etc/strongswan.d/charon-logging.conf
+COPY conf/charon.conf /etc/strongswan.d/charon.conf
 COPY conf/ipsec.secrets /etc/ipsec.secrets
 
 COPY scripts/manage /usr/local/bin/manage
