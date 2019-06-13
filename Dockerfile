@@ -21,7 +21,7 @@ WORKDIR /tmp/strongswan-$STRONGSWAN_VERSION
 RUN ./configure \
     --sysconfdir=/etc \
     --enable-acert \
-    --enable-bliss \
+    --enable-addrblock \
     --enable-dhcp \
     --enable-eap-identity \
     --enable-eap-md5 \
@@ -30,15 +30,12 @@ RUN ./configure \
     --enable-eap-tls \
     --enable-eap-tnc \
     --enable-eap-ttls \
-    --enable-farp \
-    --enable-forecast \
-    --enable-kernel-libipsec \
     --enable-md4 \
     --enable-openssl \
-    --enable-sha3 \
     --enable-xauth-eap \
     --disable-gmp \
-    --disable-ikev1
+    --disable-swanctl \
+    --disable-vici
 RUN make
 RUN checkinstall --default --install=no --fstrans=no --nodoc
 RUN mv strongswan*.deb /tmp/strongswan.deb
